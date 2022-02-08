@@ -1,0 +1,16 @@
+<div class="view-endpoints-wrapper h-100-percent" fxLayout="column">
+  <div class="toast-container mb-12">
+    <div @toastMessage *ngIf="!successToast"
+         fxLayout="row"
+         fxLayoutAlign="space-between center"
+         class="toast-message toast-success">
+      <div class="ml-12" fxLayout="row">
+        <div class="icon-wrapper mr-16">
+          <i-feather name="check"></i-feather>
+        </div>
+        <span>{{'HEADERS.SUCCESS' | transloco}}</span>
+      </div>
+      <i-feather name="X" class="mr-18" (click)="closeToast()"></i-feather>
+    </div>
+  </div>
+</div>

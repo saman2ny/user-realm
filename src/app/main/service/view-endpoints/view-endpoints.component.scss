@@ -1,0 +1,21 @@
+@import "../../../../styles/partials/mixins";
+@import "../../../../styles/partials/variables";
+
+.view-endpoints-wrapper {
+  min-height: 100% !important;
+  width: 566px;
+}
+
+.toast-message-container {
+  height: 60px;
+}
+
+.toast-message.toast-success {
+  position: fixed;
+  right: 0px;
+  top: 70px;
+}
+
+.toast-container {
+  position: relative;
+}

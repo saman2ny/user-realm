@@ -1,0 +1,80 @@
+<mat-card class="m-52">
+  <mat-card-title fxLayoutAlign="center" class="mat-display-4">{{status}} User</mat-card-title>
+  <ng-container>
+    <form [formGroup]="userForm">
+      <div class=" w-100-percent" fxLayout="column" fxLayoutAlign="start center">
+
+        <mat-form-field class="form-field" appearance="fill">
+
+          <mat-label>{{'HEADERS.USERNAME'| transloco }}</mat-label>
+          <input type="text" matInput formControlName="name" [(ngModel)]="userObjModel.name" placeholder="User name">
+        </mat-form-field>
+        <mat-error *ngIf="userForm.controls['name'].hasError('required') && userForm.controls['name'].touched">
+          {{'ERRORS.USERNAME'| transloco }} <strong>{{'ERRORS.REQUIRED'| transloco }}</strong></mat-error>
+
+        <mat-form-field class="form-field" appearance="fill">
+
+          <mat-label>{{'HEADERS.EMAIL'| transloco }}</mat-label>
+          <input type="email" matInput formControlName="email" [(ngModel)]="userObjModel.email"
+            placeholder="Ex. pat@example.com">
+        </mat-form-field>
+        <mat-error *ngIf="userForm.controls['email'].hasError('required') && userForm.controls['email'].touched">
+          {{'ERRORS.EMAIL'| transloco }} <strong>{{'ERRORS.REQUIRED'| transloco }}</strong></mat-error>
+        <mat-error *ngIf="userForm.controls['email'].hasError('pattern') && userForm.controls['email'].dirty">
+          {{'ERRORS.KINDLY'| transloco }} <strong>{{'ERRORS.EMAIL_ADDRESS'| transloco }}</strong></mat-error>
+
+
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>{{'HEADERS.PHONE'| transloco }}</mat-label>
+          <input type="phone" matInput formControlName="phone" [(ngModel)]="userObjModel.phone" mask="000-000-0000"
+            placeholder="747-747-7472" [dropSpecialCharacters]="false">
+        </mat-form-field>
+        <mat-error *ngIf="userForm.controls['phone'].hasError('required') && userForm.controls['phone'].touched">
+          {{'ERRORS.PHONE'| transloco }} <strong>{{'ERRORS.REQUIRED'| transloco }}</strong></mat-error>
+
+        <mat-form-field class="form-field" appearance="fill">
+          <input type="text" matInput id="fileInput" name="fileInput" class="w-100-percent" formControlName="avatar"
+            [(ngModel)]="userObjModel.avatar" />
+        </mat-form-field>
+        <mat-error *ngIf="userForm.controls['avatar'].hasError('required') && userForm.controls['avatar'].touched">
+          {{'ERRORS.AVATAR'| transloco }} <strong>{{'ERRORS.REQUIRED'| transloco }}</strong></mat-error>
+
+
+        <mat-form-field class="form-field" appearance="fill">
+          <mat-label>{{'HEADERS.DATE'| transloco }}</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="createdAt" [(ngModel)]="userObjModel.createdAt">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+
+            <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-error
+          *ngIf="userForm.controls['createdAt'].hasError('required') && userForm.controls['createdAt'].touched">
+          {{'ERRORS.CREATED_AT'| transloco }} <strong>{{'ERRORS.REQUIRED'| transloco }}</strong></mat-error>
+
+      </div>
+
+      <div class="w-100-percent m-22" fxLayoutAlign="center">
+        <ng-container *ngIf="this.StatusType.ADD === status">
+          <button class="accent rounded m-20" type="button"
+            (click)="configUser(this.StatusType.ADD);">{{'BUTTONS.SUBMIT'| transloco }}</button>
+        </ng-container>
+        <ng-container *ngIf="this.StatusType.EDIT === status">
+          <button class="accent rounded m-20" type="button"
+            (click)="configUser(this.StatusType.EDIT);">{{'BUTTONS.UPDATE'| transloco }}</button>
+        </ng-container>
+        <button class="accent rounded m-20" type="button" [routerLink]="['/']">{{'BUTTONS.BACK'| transloco }}</button>
+        <ng-container *ngIf="this.StatusType.VIEW !== status">
+          <button class="accent rounded m-20" type="button" (click)="resetUser();">{{'BUTTONS.CLEAR'| transloco
+            }}</button>
+        </ng-container>
+
+      </div>
+
+    </form>
+
+  </ng-container>
+</mat-card>
+<app-loader *ngIf="dataLoading"></app-loader>
+<app-view-endpoints *ngIf="toastrLoading"></app-view-endpoints>

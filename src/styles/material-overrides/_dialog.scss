@@ -1,0 +1,9 @@
+.default-dialog-wrapper {
+  max-height: 80vh;
+  min-height: 160px;
+  overflow: hidden;
+
+  mat-dialog-container {
+    padding: 0 !important;
+  }
+}

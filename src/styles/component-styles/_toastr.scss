@@ -1,0 +1,33 @@
+@import "src/styles/partials/variables";
+@import "src/styles/partials/mixins";
+
+.toast-message {
+  width: 238px;
+  padding: 12px 0;
+  border-radius: 5px;
+}
+
+.toast-success {
+  background-color: $color-dark-blue;
+  color: white;
+
+  div > .icon-wrapper {
+    @include oval-background(white, 18px, 18px, 24px);
+
+    i-feather {
+      color: $color-dark-blue
+    }
+  }
+}
+
+.toast-error {
+
+}
+
+.toast-info {
+
+}
+
+.toast-warning {
+
+}

@@ -1,0 +1,18 @@
+<section class="max-width-lg" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div class="mat-display-4 white-fg mb-20">{{ 'USER_MANAGEMENT.USER_MANAGEMENT' | transloco }}</div>
+    <div class="mat-headline white-fg mb-2 desc-width ta-center">
+      {{ 'USER_MANAGEMENT.LIST_PAGE' | transloco }} </div>
+  </div>
+
+</section>
+
+
+<div class="max-width-lg">
+  <div class="w-100-percent" fxLayoutAlign="end center">
+    <button class="accent rounded mb-22" type="button" (click)="goToAddUser(this.StatusType.ADD)">{{
+      'USER_MANAGEMENT.ADD' | transloco }}</button>
+  </div>
+  <app-loader *ngIf="dataLoading"></app-loader>
+  <app-mat-table [users]="users" [totalRows]="totalRows" [currentPage]="currentPage" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (loadPage)="loadAllDetail($event)"></app-mat-table>
+</div>

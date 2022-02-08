@@ -1,0 +1,52 @@
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 w-100-percent">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
+    <td mat-cell *matCellDef="let element;" class="btn-link" (click)="ViewAt(element, this.StatusType.VIEW)">
+      {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> CreatedAt </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdAt | showDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
+    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="avatar">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Avatar </th>
+    <td mat-cell *matCellDef="let element"> <img class="w-70" [src]="element.avatar" /> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="remove">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Access</th>
+    <td mat-cell *matCellDef="let element; let i = index;">
+      <i-feather name="trash-2" class="btn-link" (click)="removeAt(element, i)"></i-feather>
+      <span class="ml-20">
+        <i-feather name="edit-2" class="btn-link" (click)="updateAt(element, this.StatusType.EDIT)"></i-feather>
+      </span>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator #paginator [length]="totalRows" [pageIndex]="currentPage" [pageSize]="pageSize"
+  [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
+</mat-paginator>
+<app-loader *ngIf="dataLoading"></app-loader>
+<app-view-endpoints *ngIf="toastrLoading"></app-view-endpoints>
